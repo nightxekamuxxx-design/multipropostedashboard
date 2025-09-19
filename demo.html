@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Web Multi-páginas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #764ba2;
+        }
+        .demo-links {
+            text-align: center;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🚀 Sistema Web Multi-páginas</h1>
+        <p>Sistema completo com frontend, backend e painel administrativo</p>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <h3>🎨 Frontend Responsivo</h3>
+            <p>Interface moderna com páginas de login, registro, dashboard e planos</p>
+        </div>
+        <div class="feature">
+            <h3>⚙️ Backend Robusto</h3>
+            <p>API REST com Node.js, autenticação JWT e integração com Stripe</p>
+        </div>
+        <div class="feature">
+            <h3>👑 Painel Admin</h3>
+            <p>Interface administrativa completa para gerenciamento de usuários</p>
+        </div>
+        <div class="feature">
+            <h3>🌍 Multilíngue</h3>
+            <p>Suporte a PT-BR, PT-PT, ES-ES e EN-US</p>
+        </div>
+    </div>
+
+    <div class="demo-links">
+        <h2>📱 Demonstração Online</h2>
+        <a href="./index.html" class="btn">🏠 Landing Page</a>
+        <a href="./app-usuario/login.html" class="btn">🔑 Login</a>
+        <a href="./app-usuario/register.html" class="btn">📝 Registro</a>
+        <a href="./app-usuario/dashboard.html" class="btn">📊 Dashboard</a>
+        <a href="./app-usuario/planos.html" class="btn">💳 Planos</a>
+        <a href="./painel-admin/admin-dashboard.html" class="btn">👑 Admin</a>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <h3>🛠️ Tecnologias Utilizadas</h3>
+        <p><strong>Frontend:</strong> HTML5, CSS3, JavaScript (Vanilla), PDF.js</p>
+        <p><strong>Backend:</strong> Node.js, Express.js, SQLite, JWT, Stripe</p>
+        <p><strong>Segurança:</strong> Helmet.js, bcryptjs, DLP middleware</p>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <a href="https://github.com/nightxekamuxxx-design/multipropostedashboard" class="btn">
+                📚 Ver Código no GitHub
+            </a>
+        </div>
+    </div>
+</body>
+</html>

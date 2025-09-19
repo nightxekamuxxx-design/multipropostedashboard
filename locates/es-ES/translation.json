@@ -1,0 +1,47 @@
+{
+  "pageTitle": "Panel Financiero",
+  "headerTitle": "Panel Financiero",
+  "upgradeButton": "Mejorar Plan",
+  "filterBy": "Filtrar por:",
+  "filterToday": "Hoy",
+  "filterWeek": "Esta Semana",
+  "filterMonth": "Este Mes",
+  "filterYear": "Este Año",
+  "filterAll": "Todo",
+  "totalRevenue": "Ingresos Totales",
+  "totalExpense": "Gasto Total",
+  "currentBalance": "Saldo Actual",
+  "addTransactionTitle": "Agregar Nueva Transacción",
+  "descriptionLabel": "Descripción",
+  "valueLabel": "Valor (R$)",
+  "categoryLabel": "Categoría",
+  "typeLabel": "Tipo",
+  "dateLabel": "Fecha",
+  "addButton": "Agregar",
+  "recentTransactions": "Transacciones Recientes"
+  ,"importTransactions": "Importar Transacciones"
+  ,"importCsv": "Importar CSV"
+  ,"importPdf": "Importar PDF"
+  ,"welcomeMsg": "Bienvenido a tu panel financiero"
+  ,"logout": "Cerrar sesión"
+  ,"terms": "Términos de Servicio"
+  ,"privacy": "Política de Privacidad"
+  ,"noTransactions": "No se encontraron transacciones."
+  ,"forecastTitle": "Diagnóstico y Pronóstico Financiero (Próximos 30 días)"
+  ,"spendLevelTitle": "Nivel de Gasto Diario (Promedio)"
+  ,"synthesisTitle": "Resumen de Hojas y Extractos"
+    ,"viewDetailedAnalysis": "Ver Análisis Detallado"
+    ,"sidebar": {
+      "brand": "Panel",
+      "product": "Finanzas™",
+      "dashboard": "Dashboard",
+      "transactions": "Transacciones",
+      "goals": "Metas Financieras",
+      "scheduledIncome": "Ingresos Programados",
+      "simulations": "Simulaciones",
+      "accounts": "Cuentas",
+      "incomes": "Entradas",
+      "expenses": "Gastos",
+      "inviteAdmin": "Invitar Admin"
+    }
+}

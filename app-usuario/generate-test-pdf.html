@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gerador de PDF de Teste - Painel Financeiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color:#0f172a; display:flex; align-items:center; justify-content:center; height:100vh; margin:0 }
+    .card { width:720px; background:white; border-radius:12px; padding:24px; box-shadow:0 10px 30px rgba(2,6,23,0.08) }
+    h1{ margin:0 0 8px 0; font-size:18px }
+    p{ margin:0 0 16px 0; color:#475569 }
+    textarea{ width:100%; height:220px; border:1px solid #e2e8f0; border-radius:8px; padding:12px; font-family:monospace; font-size:13px }
+    .controls{ display:flex; gap:8px; margin-top:12px }
+    button{ background:#4f46e5; color:white; border:none; padding:10px 14px; border-radius:8px; cursor:pointer }
+    button.secondary{ background:#64748b }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Gerador de PDF de Teste</h1>
+    <p>Gera um PDF contendo um cabeçalho com o nome do banco (ex.: <b>Nubank</b>) e linhas no formato CSV separado por ponto-e-vírgula que o importador do painel aceita.</p>
+
+    <label for="content">Conteúdo do PDF (cada linha será uma linha de texto no PDF):</label>
+    <textarea id="content">Nubank
+2025-09-01;Salario;1500,00;Salarios;receita
+2025-09-03;Supermercado;-120,50;Alimentação;despesa
+2025-09-05;Pagamento Loja;-89,90;Lazer;despesa
+2025-09-10;Pix Cliente;2000,00;Servicos;receita
+</textarea>
+
+    <div class="controls">
+      <button id="generate">Gerar PDF de Teste</button>
+      <button id="downloadRaw" class="secondary">Baixar texto (.txt)</button>
+      <button id="generate4yrs" class="secondary" style="background:#0ea5a4;margin-left:auto">Gerar molde: Relatório 4 Anos</button>
+    </div>
+
+    <p style="margin-top:12px;font-size:13px;color:#64748b">Instruções: abra este arquivo no navegador, clique em "Gerar PDF de Teste" e salve o arquivo. Depois importe-o no Painel Financeiro (Importar PDF).</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+  <script>
+    const { jsPDF } = window.jspdf;
+    // Helper to format currency BRL
+    const fmtBRL = (v) => {
+      return (new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })).format(v);
+    };
+    document.getElementById('generate').addEventListener('click', () => {
+      const content = document.getElementById('content').value.split(/\r?\n/);
+      const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+      const marginLeft = 40;
+      let y = 60;
+      const lineHeight = 16;
+      doc.setFontSize(12);
+      // Escrever linhas no PDF tal como estão (texto simples) - o importador irá extrair o texto
+      content.forEach((line, idx) => {
+        // Se a linha for maior que o width, quebramos manualmente
+        const maxWidth = doc.internal.pageSize.getWidth() - marginLeft * 2;
+        const parts = doc.splitTextToSize(line || ' ', { maxWidth });
+        parts.forEach(p => {
+          if (y > doc.internal.pageSize.getHeight() - 40) {
+            doc.addPage();
+            y = 60;
+          }
+          doc.text(p, marginLeft, y);
+          y += lineHeight;
+        });
+      });
+      const fileName = 'teste_transacoes.pdf';
+      doc.save(fileName);
+    });
+
+    // Gera molde de relatório com 4 anos (resumo anual + tabela mensal)
+    document.getElementById('generate4yrs').addEventListener('click', () => {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      // Gerar dados de exemplo para 4 anos (currentYear-3 ... currentYear)
+      const years = [];
+      for (let y = currentYear - 3; y <= currentYear; y++) {
+        // criar 12 meses com valores de receita/despesa
+        const months = [];
+        for (let m = 0; m < 12; m++) {
+          // Valores sintéticos: receita entre 5000-15000, despesa entre 3000-12000
+          const receita = Math.round((5000 + Math.random() * 10000) * 100) / 100;
+          const despesa = Math.round((3000 + Math.random() * 9000) * 100) / 100;
+          months.push({ month: m + 1, receita, despesa, saldo: Math.round((receita - despesa) * 100) / 100 });
+        }
+        const totalReceita = months.reduce((s, x) => s + x.receita, 0);
+        const totalDespesa = months.reduce((s, x) => s + x.despesa, 0);
+        years.push({ year: y, months, totalReceita: Math.round(totalReceita * 100) / 100, totalDespesa: Math.round(totalDespesa * 100) / 100, saldo: Math.round((totalReceita - totalDespesa) * 100) / 100 });
+      }
+
+      const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const margin = 40;
+
+      // Primeira página: capa + resumo anual
+      doc.setFontSize(18);
+      doc.text('Relatório Financeiro - Molde 4 Anos', margin, 60);
+      doc.setFontSize(11);
+      doc.text(`Período: ${years[0].year} - ${years[years.length - 1].year}`, margin, 80);
+      doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, margin, 96);
+
+      // Sumário anual como tabela
+      const summaryBody = years.map(y => [String(y.year), fmtBRL(y.totalReceita), fmtBRL(y.totalDespesa), fmtBRL(y.saldo)]);
+      doc.autoTable({
+        head: [['Ano', 'Receita Total', 'Despesa Total', 'Saldo']],
+        body: summaryBody,
+        startY: 120,
+        theme: 'grid',
+        headStyles: { fillColor: [79,70,229], textColor: 255 },
+        styles: { fontSize: 10 }
+      });
+
+      // Para cada ano cria detalhe mensal em nova página
+      years.forEach((y, idx) => {
+        if (idx > 0 || doc.lastAutoTable) doc.addPage();
+        doc.setFontSize(14);
+        doc.text(`Detalhamento Anual: ${y.year}`, margin, 50);
+        doc.setFontSize(10);
+        doc.text(`Receita: ${fmtBRL(y.totalReceita)}  —  Despesa: ${fmtBRL(y.totalDespesa)}  —  Saldo: ${fmtBRL(y.saldo)}`, margin, 66);
+
+        const body = y.months.map(m => [String(m.month).padStart(2, '0'), fmtBRL(m.receita), fmtBRL(m.despesa), fmtBRL(m.saldo)]);
+        doc.autoTable({
+          head: [['Mês', 'Receita', 'Despesa', 'Saldo']],
+          body,
+          startY: 86,
+          theme: 'striped',
+          styles: { fontSize: 9 }
+        });
+
+        // Pequena observação
+        const cursor = doc.lastAutoTable.finalY + 12;
+        doc.setFontSize(9);
+        doc.text('Observações: modelo de relatório. Substitua pelos dados reais ao integrar com o painel.', margin, cursor);
+      });
+
+      doc.save('relatorio_4_anos.pdf');
+    });
+
+    document.getElementById('downloadRaw').addEventListener('click', () => {
+      const text = document.getElementById('content').value;
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'teste_transacoes.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  </script>
+</body>
+</html>

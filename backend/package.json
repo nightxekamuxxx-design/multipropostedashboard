@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7",
+    "stripe": "^18.5.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0",
+    "helmet": "^7.0.0",
+    "cookie-parser": "^1.4.6"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

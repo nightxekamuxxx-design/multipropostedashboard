@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Financeiro™ - Organize suas Finanças com Inteligência</title>
+  <meta name="description" content="Tome o controle das suas finanças com o nosso painel inteligente. Acompanhe despesas, defina metas e receba insights com IA.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          boxShadow: {
+            soft: '0 10px 30px -12px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="landing-style.css">
+</head>
+
+<body class="text-slate-800 dark:text-slate-200 antialiased overflow-x-hidden">
+
+  <header class="sticky top-0 z-50">
+    <nav class="container mx-auto px-6 py-4 flex items-center justify-between backdrop-blur-md bg-white/30 dark:bg-slate-900/30 border-b border-slate-900/10 dark:border-white/6 rounded-b-2xl">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-600 to-sky-500 grid place-content-center shadow-soft">
+          <i class="fa-solid fa-coins text-white text-sm"></i>
+        </div>
+        <a href="#" class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">Painel Financeiro<sup class="text-xs font-semibold opacity-70">™</sup></a>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-700 dark:text-slate-300">
+        <a href="#features" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Funcionalidades</a>
+        <a href="#mission" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Missão</a>
+        <a href="#pricing" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Preços</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="app-usuario/login.html" class="px-4 py-2 rounded-lg text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 transition-colors">Entrar</a>
+        <a href="app-usuario/register.html" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-600 to-sky-500 text-white shadow-lg hover:from-indigo-500 hover:to-sky-400">Começar Grátis</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+  <section class="hero-section relative pt-20 pb-12 md:pt-28 md:pb-16">
+    <div class="absolute inset-0 -z-10 hero-bg"></div>
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+        <div class="text-center lg:text-left">
+          <h1 class="hero-title">O jeito mais claro e inteligente de gerir o seu dinheiro</h1>
+          <p class="mt-6 hero-sub">Controle despesas, defina metas e receba recomendações acionáveis com o poder da IA — tudo num painel elegante e seguro.</p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
+            <a href="app-usuario/register.html" class="cta-primary">Começar Grátis</a>
+            <a href="#features" class="cta-secondary">Ver Funcionalidades</a>
+          </div>
+
+          <div class="mt-6 text-center lg:text-left">
+            <a href="#mission" class="scroll-down" aria-label="Descer para missão">
+              <span class="chev">⌄</span>
+              <span class="sr-only">Descer</span>
+            </a>
+          </div>
+
+          <div class="mt-12 flex gap-6 items-center justify-center lg:justify-start text-sm text-slate-600 dark:text-slate-400">
+            <div class="flex items-center gap-3">
+              <div class="h-9 w-9 rounded-lg bg-emerald-50 grid place-content-center text-emerald-500"><i class="fa-solid fa-lock"></i></div>
+              <div><strong>Segurança</strong><div class="opacity-70">Criptografia e LGPD</div></div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-9 w-9 rounded-lg bg-indigo-50 grid place-content-center text-indigo-500"><i class="fa-solid fa-robot"></i></div>
+              <div><strong>IA integrada</strong><div class="opacity-70">Recomendações personalizadas</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-center">
+          <div class="product-visual p-6 rounded-3xl shadow-2xl">
+            <div class="mock-dashboard">
+              <div class="md-topbar">
+                <div class="logo-mini"><i class="fa-solid fa-coins"></i></div>
+                <div class="title-mini">Painel</div>
+                <div class="dots-mini">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="md-cards">
+                <div class="md-card md-card-revenue">
+                  <div class="md-card-label">Receita</div>
+                  <div class="md-card-value">R$ 7.580</div>
+                </div>
+                <div class="md-card md-card-expense">
+                  <div class="md-card-label">Despesa</div>
+                  <div class="md-card-value">R$ 3.120</div>
+                </div>
+                <div class="md-card md-card-balance">
+                  <div class="md-card-label">Saldo</div>
+                  <div class="md-card-value">R$ 4.460</div>
+                </div>
+              </div>
+
+              <div class="md-main">
+                <div class="md-chart">
+                  <div class="chart-faux"></div>
+                </div>
+                <div class="md-transactions">
+                  <div class="trans-row"><span>Supermercado</span><strong class="t-neg">- R$ 254,90</strong></div>
+                  <div class="trans-row"><span>Salário</span><strong class="t-pos">+ R$ 5.000,00</strong></div>
+                  <div class="trans-row"><span>Netflix</span><strong class="t-neg">- R$ 39,90</strong></div>
+                </div>
+              </div>
+
+              <div class="md-footer">
+                <div class="meta"><strong>75%</strong> metas atingidas</div>
+                <div class="badge-premium">Premium</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="mission" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">A Nossa Missão é o Seu Sucesso Financeiro</h2>
+                 <p class="mt-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-400">Construímos a nossa plataforma sobre quatro pilares essenciais.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+                <div class="text-center reveal">
+                    <div class="mx-auto h-14 w-14 rounded-xl bg-sky-500/20 text-sky-500 dark:text-sky-400 grid place-content-center mb-4">
+                        <i class="fa-solid fa-user-shield text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Privacidade Absoluta</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Em conformidade com a LGPD, os seus dados são seus. A nossa tecnologia garante que eles permaneçam seguros e sob o seu controlo.</p>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 150ms;">
+                    <div class="mx-auto h-14 w-14 rounded-xl bg-emerald-500/20 text-emerald-500 dark:text-emerald-400 grid place-content-center mb-4">
+                        <i class="fa-solid fa-hand-sparkles text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Design Intuitivo</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">A gestão financeira deve ser acessível. A nossa plataforma foi desenhada para ser fácil de usar por qualquer pessoa.</p>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 300ms;">
+                    <div class="mx-auto h-14 w-14 rounded-xl bg-purple-500/20 text-purple-500 dark:text-purple-400 grid place-content-center mb-4">
+                        <i class="fa-solid fa-rocket text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Inovação Contínua</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Utilizamos IA e as mais recentes tecnologias para oferecer insights que o mantêm um passo à frente no mundo digital.</p>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 450ms;">
+                    <div class="mx-auto h-14 w-14 rounded-xl bg-teal-500/20 text-teal-500 dark:text-teal-400 grid place-content-center mb-4">
+                        <i class="fa-solid fa-magnifying-glass-dollar text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Clareza nos Seus Dados</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Transformamos extratos bancários complexos em informações claras, mostrando para onde o seu dinheiro vai de forma prática.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-white/5 dark:bg-slate-900/30">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Tudo o que você precisa num lugar só</h2>
+          <p class="mt-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-400">Desde o diagnóstico financeiro a metas personalizadas, temos as ferramentas certas para si.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card-bg p-6 rounded-2xl reveal"><div class="h-12 w-12 rounded-lg bg-indigo-500/20 text-indigo-500 dark:text-indigo-400 grid place-content-center mb-4"><i class="fa-solid fa-chart-pie text-2xl"></i></div><h3 class="text-xl font-bold text-slate-800 dark:text-white">Dashboard Intuitivo</h3><p class="mt-2 text-slate-600 dark:text-slate-400">Visualize todas as suas finanças, receitas e despesas num painel simples e elegante.</p></div>
+            <div class="card-bg p-6 rounded-2xl reveal" style="transition-delay: 150ms;"><div class="h-12 w-12 rounded-lg bg-emerald-500/20 text-emerald-500 dark:text-emerald-400 grid place-content-center mb-4"><i class="fa-solid fa-bullseye text-2xl"></i></div><h3 class="text-xl font-bold text-slate-800 dark:text-white">Metas Inteligentes</h3><p class="mt-2 text-slate-600 dark:text-slate-400">Defina objetivos financeiros e acompanhe o seu progresso com barras de progresso motivacionais.</p></div>
+            <div class="card-bg p-6 rounded-2xl reveal" style="transition-delay: 300ms;"><div class="h-12 w-12 rounded-lg bg-sky-500/20 text-sky-500 dark:text-sky-400 grid place-content-center mb-4"><i class="fa-solid fa-lightbulb text-2xl"></i></div><h3 class="text-xl font-bold text-slate-800 dark:text-white">Análise com IA</h3><p class="mt-2 text-slate-600 dark:text-slate-400">Receba dicas personalizadas da nossa IA para otimizar os seus gastos e atingir as suas metas mais rápido.</p></div>
+            <div class="card-bg p-6 rounded-2xl reveal"><div class="h-12 w-12 rounded-lg bg-rose-500/20 text-rose-500 dark:text-rose-400 grid place-content-center mb-4"><i class="fa-solid fa-file-pdf text-2xl"></i></div><h3 class="text-xl font-bold text-slate-800 dark:text-white">Relatórios Completos</h3><p class="mt-2 text-slate-600 dark:text-slate-400">Exporte as suas transações para PDF ou CSV para uma análise detalhada ou para partilhar com o seu contabilista.</p></div>
+            <div class="card-bg p-6 rounded-2xl reveal" style="transition-delay: 150ms;"><div class="h-12 w-12 rounded-lg bg-amber-500/20 text-amber-500 dark:text-amber-400 grid place-content-center mb-4"><i class="fa-solid fa-cloud-upload text-2xl"></i></div><h3 class="text-xl font-bold text-slate-800 dark:text-white">Importação Fácil</h3><p class="mt-2 text-slate-600 dark:text-slate-400">Importe as suas transações a partir de ficheiros CSV do seu banco para começar rapidamente.</p></div>
+            <div class="card-bg p-6 rounded-2xl reveal" style="transition-delay: 300ms;"><div class="h-12 w-12 rounded-lg bg-purple-500/20 text-purple-500 dark:text-purple-400 grid place-content-center mb-4"><i class="fa-solid fa-mobile-screen-button text-2xl"></i></div><h3 class="text-xl font-bold text-slate-800 dark:text-white">Acesso em Qualquer Lugar</h3><p class="mt-2 text-slate-600 dark:text-slate-400">Instale o nosso PWA no seu telemóvel e aceda ao seu painel em qualquer lugar, mesmo offline.</p></div>
+            <div class="card-bg p-6 rounded-2xl reveal" style="transition-delay: 450ms;"><div class="h-12 w-12 rounded-lg bg-slate-500/20 text-slate-500 dark:text-slate-400 grid place-content-center mb-4"><i class="fa-brands fa-apple text-2xl"></i></div><h3 class="text-xl font-bold text-slate-800 dark:text-white">Nativo para macOS</h3><p class="mt-2 text-slate-600 dark:text-slate-400">Desfrute de uma experiência perfeitamente integrada no seu MacBook ou iMac, com um design que complementa o ecossistema Apple.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Um plano para cada necessidade</h2>
+          <p class="mt-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-400">Comece de graça e evolua conforme as suas finanças crescem.</p>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          
+          <div class="basico-card-wrapper rounded-2xl reveal">
+            <div class="card-bg rounded-xl p-8 flex flex-col h-full">
+              <h3 class="text-xl font-bold text-slate-800 dark:text-white">Básico</h3>
+              <p class="mt-2 text-slate-600 dark:text-slate-400">Para começar a organizar-se.</p>
+              <p class="mt-6 text-4xl font-bold text-slate-900 dark:text-white">Grátis</p>
+              <ul class="mt-6 space-y-3 text-slate-600 dark:text-slate-400 flex-1">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Até 50 transações/mês</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Dashboard principal</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>2 Metas Financeiras</span></li>
+              </ul>
+              <a href="#features" class="mt-8 block w-full text-center px-6 py-3 rounded-lg font-medium bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">Conheça nossos serviços</a>
+            </div>
+          </div>
+          
+          <div class="premium-card-wrapper rounded-2xl relative reveal" style="transition-delay: 150ms;">
+               <div class="card-bg rounded-xl p-8 flex flex-col h-full">
+                  <p class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider btn-neon-red">Mais Popular</p>
+                  <h3 class="text-xl font-bold text-slate-800 dark:text-white">Premium</h3>
+                  <p class="mt-2 text-slate-600 dark:text-slate-400">Para um controlo total.</p>
+                  <p class="mt-6 text-4xl font-bold text-slate-900 dark:text-white">R$ 19<span class="text-lg font-medium text-slate-500 dark:text-slate-400">/mês</span></p>
+                  <ul class="mt-6 space-y-3 text-slate-600 dark:text-slate-400 flex-1">
+                      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Transações ilimitadas</span></li>
+                      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Metas e Simulações</span></li>
+                      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Análise com IA</span></li>
+                      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Importação e Exportação</span></li>
+                  </ul>
+                  <a href="app-usuario/register.html" class="mt-8 block w-full text-center px-6 py-3 rounded-lg font-medium bg-red-600 text-white hover:bg-red-500 btn-primary btn-neon-red">Escolher Premium</a>
+               </div>
+          </div>
+          
+          <div class="empresarial-card-wrapper rounded-2xl reveal" style="transition-delay: 300ms;">
+            <div class="card-bg rounded-xl p-8 flex flex-col h-full">
+              <h3 class="text-xl font-bold text-slate-800 dark:text-white">Empresarial</h3>
+              <p class="mt-2 text-slate-600 dark:text-slate-400">Para o seu negócio.</p>
+              <p class="mt-6 text-4xl font-bold text-slate-900 dark:text-white">R$ 49<span class="text-lg font-medium text-slate-500 dark:text-slate-400">/mês</span></p>
+              <ul class="mt-6 space-y-3 text-slate-600 dark:text-slate-400 flex-1">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Tudo do Premium</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Múltiplos utilizadores</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Integração com E-commerce</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i><span>Suporte prioritário</span></li>
+              </ul>
+              <a href="app-usuario/register.html" class="mt-8 block w-full text-center px-6 py-3 rounded-lg font-medium bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">Fale Connosco</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-white/5 dark:bg-slate-900/20 border-t border-slate-900/10 dark:border-white/10">
+      <div class="container mx-auto px-6 py-12 text-center text-slate-600 dark:text-slate-400">
+        <p>&copy; 2025 Painel Financeiro™. Todos os direitos reservados.</p>
+        <p class="text-sm mt-2">Uma ferramenta para o ajudar a alcançar a liberdade financeira.</p>
+      </div>
+    </footer>
+  </main>
+  
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <script src="landing-script.js"></script>
+
+</body>
+</html>

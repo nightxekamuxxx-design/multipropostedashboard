@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Planos - Dashboard Financeiro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="planos-style.css">
+</head>
+<body class="antialiased">
+    <header class="bg-transparent absolute top-0 left-0 w-full z-10 p-6">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+             <div class="flex items-center gap-3">
+                <div class="h-9 w-9 rounded-2xl bg-indigo-600 grid place-content-center shadow-soft">
+                    <i class="fa-solid fa-coins text-white"></i>
+                </div>
+                <h2 class="text-lg font-semibold text-slate-800 dark:text-white">Financeiro™</h2>
+             </div>
+             <div class="flex items-center gap-4">
+                 <a href="dashboard.html" class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition" data-translate-key="back_to_dashboard">
+                    &larr; Voltar para o Dashboard
+                 </a>
+                <div class="relative">
+                    <button id="lang-switcher-btn" class="flex items-center gap-2 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-black/10 dark:hover:bg-white/10 transition">
+                        <i class="fa-solid fa-globe"></i>
+                        <span id="current-lang-text">Português</span>
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div id="lang-switcher-dropdown" class="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-lg shadow-lg hidden">
+                        <a href="#" class="lang-option block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700" data-lang="pt-BR">Português (Brasil)</a>
+                        <a href="#" class="lang-option block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700" data-lang="en">English (US)</a>
+                        <a href="#" class="lang-option block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700" data-lang="es">Español</a>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen flex items-center justify-center p-6">
+        <div class="max-w-4xl w-full">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white" data-translate-key="choose_plan_title">Escolha o plano ideal para você</h1>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto" data-translate-key="choose_plan_subtitle">Comece de graça ou desbloqueie todo o nosso potencial com o plano Premium para ter controle total sobre suas finanças.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card card-bg p-8 rounded-2xl border-2 dark:border-slate-700">
+                    <h3 class="text-xl font-semibold text-slate-500" data-translate-key="free_plan_title">Grátis</h3>
+                    <p class="text-5xl font-bold my-6"><span data-translate-key="free_plan_price">R$ 0</span><span class="text-lg font-medium text-slate-500" data-translate-key="per_month">/mês</span></p>
+                    <button class="w-full py-3 rounded-lg bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-white font-semibold cursor-default" data-translate-key="current_plan_button">Seu Plano Atual</button>
+                    <ul class="mt-8 space-y-3 text-slate-600 dark:text-slate-300">
+                        <li><i class="fa-solid fa-check w-5 text-emerald-500"></i> <span data-translate-key="limited_transactions">Transações limitadas</span></li>
+                        <li><i class="fa-solid fa-check w-5 text-emerald-500"></i> <span data-translate-key="basic_reports">Relatórios básicos</span></li>
+                        <li class="opacity-50"><i class="fa-solid fa-times w-5 text-rose-500"></i> <span data-translate-key="no_ai_analysis">Análise com IA</span></li>
+                        <li class="opacity-50"><i class="fa-solid fa-times w-5 text-rose-500"></i> <span data-translate-key="no_advanced_export">Exportação Avançada</span></li>
+                        <li class="opacity-50"><i class="fa-solid fa-times w-5 text-rose-500"></i> <span data-translate-key="no_navigation_assistant">Assistente de navegação</span></li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card card-bg p-8 rounded-2xl recommended">
+                    <div class="recommended-badge" data-translate-key="popular_badge">Popular</div>
+                    <h3 class="text-xl font-semibold text-indigo-500" data-translate-key="premium_plan_title">Premium</h3>
+                    <p class="text-5xl font-bold my-6"><span data-translate-key="premium_plan_price">R$ 19,90</span><span class="text-lg font-medium text-slate-500" data-translate-key="per_month">/mês</span></p>
+                    <button id="select-premium-btn" class="w-full py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-soft transition-transform hover:scale-105" data-translate-key="upgrade_button">Fazer Upgrade</button>
+                    <ul class="mt-8 space-y-3 text-slate-600 dark:text-slate-300">
+                        <li><i class="fa-solid fa-check w-5 text-emerald-500"></i> <span data-translate-key="unlimited_transactions">Transações ilimitadas</span></li>
+                        <li><i class="fa-solid fa-check w-5 text-emerald-500"></i> <span data-translate-key="full_reports">Relatórios completos</span></li>
+                        <li><i class="fa-solid fa-check w-5 text-emerald-500"></i> <span data-translate-key="ai_analysis">Análise com IA</span></li>
+                        <li><i class="fa-solid fa-check w-5 text-emerald-500"></i> <span data-translate-key="advanced_export">Exportação Avançada</span></li>
+                        <li><i class="fa-solid fa-check w-5 text-emerald-500"></i> <span data-translate-key="priority_support">Suporte Prioritário</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="planos-script.js"></script>
+    <script src="translator.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "pageTitle": "Financial Dashboard",
+  "headerTitle": "Financial Dashboard",
+  "upgradeButton": "Upgrade Plan",
+  "filterBy": "Filter by:",
+  "filterToday": "Today",
+  "filterWeek": "This Week",
+  "filterMonth": "This Month",
+  "filterYear": "This Year",
+  "filterAll": "All",
+  "totalRevenue": "Total Revenue",
+  "totalExpense": "Total Expense",
+  "currentBalance": "Current Balance",
+  "addTransactionTitle": "Add New Transaction",
+  "descriptionLabel": "Description",
+  "valueLabel": "Amount ($)",
+  "categoryLabel": "Category",
+  "typeLabel": "Type",
+  "dateLabel": "Date",
+  "addButton": "Add",
+  "recentTransactions": "Recent Transactions"
+  ,"importTransactions": "Import Transactions"
+  ,"importCsv": "Import CSV"
+  ,"importPdf": "Import PDF"
+  ,"welcomeMsg": "Welcome to your financial dashboard"
+  ,"logout": "Logout"
+  ,"terms": "Terms of Service"
+  ,"privacy": "Privacy Policy"
+  ,"noTransactions": "No transactions found."
+  ,"forecastTitle": "Diagnosis and Financial Forecast (Next 30 days)"
+  ,"spendLevelTitle": "Daily Spending Level (Average)"
+  ,"synthesisTitle": "Spreadsheets and Statements Summary"
+  ,"viewDetailedAnalysis": "View Detailed Analysis"
+    ,"sidebar": {
+      "brand": "Panel",
+      "product": "Finance™",
+      "dashboard": "Dashboard",
+      "transactions": "Transactions",
+      "goals": "Financial Goals",
+      "scheduledIncome": "Scheduled Income",
+      "simulations": "Simulations",
+      "accounts": "Accounts",
+      "incomes": "Incomes",
+      "expenses": "Expenses",
+      "inviteAdmin": "Invite Admin"
+    }
+}

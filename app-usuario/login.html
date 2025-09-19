@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acesse sua Conta - Painel Financeiro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] },
+                    boxShadow: {
+                        soft: '0 10px 40px -12px rgba(0,0,0,0.35)',
+                        'soft-dark': '0 10px 40px -12px rgba(0,0,0,0.65)'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'fade-out': 'fadeOut 0.5s ease-out forwards',
+                        'slide-in': 'slideIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0, transform: 'translateY(10px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        fadeOut: {
+                            '0%': { opacity: 1, transform: 'translateY(0)' },
+                            '100%': { opacity: 0, transform: 'translateY(-10px)' },
+                        },
+                        slideIn: {
+                            '0%': { opacity: 0, transform: 'translateX(20px)' },
+                            '100%': { opacity: 1, transform: 'translateX(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="login-style.css">
+</head>
+
+<body class="text-slate-800 dark:text-slate-200 antialiased overflow-hidden">
+    <button id="theme-toggle" class="fixed top-4 right-4 z-10 h-12 w-12 rounded-full flex items-center justify-center card-bg border border-slate-300/20 dark:border-white/10 shadow-soft dark:shadow-soft-dark focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <i id="theme-icon" class="fa-solid text-xl text-indigo-500 dark:text-indigo-400"></i>
+    </button>
+    
+    <div class="flex h-screen items-center justify-center p-4">
+        <div class="w-full max-w-sm">
+            <div id="login-card" class="card-bg border border-slate-300/20 dark:border-white/5 rounded-2xl p-8 shadow-soft dark:shadow-soft-dark">
+
+                <div id="email-step">
+                    <div class="text-center mb-6 animate-fade-in">
+                        <div class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-indigo-600 shadow-soft mb-4">
+                            <i class="fa-solid fa-coins text-white text-3xl"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="loginTitle">Acesse sua Conta</h1>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400" data-i18n="loginSubtitle">Use seu e-mail ou provedor favorito.</p>
+                    </div>
+                    
+                    <div id="message-area" class="text-center text-sm mb-4 min-h-[20px]"></div>
+
+                    <form id="email-form" class="space-y-4">
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                    <i class="fa-solid fa-envelope text-slate-400"></i>
+                                </span>
+                                <input id="email" name="email" type="email" autocomplete="email" required class="w-full rounded-xl bg-slate-100 dark:bg-slate-900/40 border border-slate-300/40 dark:border-white/10 pl-10 pr-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" placeholder="seunome@exemplo.com" data-i18n="emailPlaceholder">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform hover:scale-105" data-i18n="continueWithEmail">
+                            Continuar com E-mail
+                        </button>
+                    </form>
+
+                    <div class="my-6 flex items-center text-sm">
+                        <div class="flex-grow border-t border-slate-300 dark:border-slate-600"></div>
+                        <span class="mx-4 text-slate-500 dark:text-slate-400" data-i18n="or">OU</span>
+                        <div class="flex-grow border-t border-slate-300 dark:border-slate-600"></div>
+                    </div>
+
+                    <div class="space-y-3">
+                         <button id="biometric-login-btn" class="w-full flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-slate-600 rounded-xl shadow-sm text-sm font-medium text-slate-700 dark:text-slate-200 bg-white/50 dark:bg-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                            <i class="fa-solid fa-fingerprint text-lg mr-3"></i>
+                            Entrar com Biometria
+                        </button>
+                         <button class="w-full flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-slate-600 rounded-xl shadow-sm text-sm font-medium text-slate-700 dark:text-slate-200 bg-white/50 dark:bg-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                            <i class="fa-brands fa-google text-lg mr-3"></i>
+                            Continuar com Google
+                        </button>
+                        <button class="w-full flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-slate-600 rounded-xl shadow-sm text-sm font-medium text-slate-700 dark:text-slate-200 bg-white/50 dark:bg-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                             <i class="fa-brands fa-github text-lg mr-3"></i>
+                            Continuar com GitHub
+                        </button>
+                    </div>
+
+                    <div class="mt-6 text-center text-sm">
+                        <p class="text-slate-600 dark:text-slate-400" data-i18n="noAccount">
+                            Não tem uma conta?
+                            <a href="register.html" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300" data-i18n="createAccountLink">
+                                Crie uma agora
+                            </a>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div id="password-step" class="hidden">
+                    <button id="back-to-email" class="text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-300 mb-4 flex items-center"><i class="fa-solid fa-arrow-left mr-2"></i> Voltar</button>
+                    <div class="mb-6 animate-slide-in">
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="enterPassword">Digite sua Senha</h1>
+                        <p id="user-email-display" class="mt-1 text-sm text-slate-600 dark:text-slate-400 truncate"></p>
+                    </div>
+
+                    <form id="password-form" class="space-y-4">
+                        <div>
+                            <label for="password" class="sr-only">Senha</label>
+                            <div class="relative mt-1">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                    <i class="fa-solid fa-lock text-slate-400"></i>
+                                </span>
+                                <input id="password" name="password" type="password" autocomplete="current-password" required class="w-full rounded-xl bg-slate-100 dark:bg-slate-900/40 border border-slate-300/40 dark:border-white/10 pl-10 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" placeholder="Sua senha" data-i18n="passwordPlaceholder">
+                                <button type="button" id="toggle-password" class="absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-500 dark:text-slate-400 hover:text-indigo-500">
+                                    <i id="password-icon" class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                         <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center">
+                                <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-slate-400 text-indigo-600 focus:ring-indigo-500">
+                                <label for="remember-me" class="ml-2 block text-slate-700 dark:text-slate-300" data-i18n="rememberMe">Lembrar-me</label>
+                            </div>
+                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Esqueceu?</a>
+                        </div>
+
+                        <div>
+                            <button id="login-button" type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform hover:scale-105" data-i18n="continueBtn">
+                                Continuar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="login-script.js"></script>
+</body>
+</html>

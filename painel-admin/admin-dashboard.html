@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Administrador</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            'primary': { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554' },
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+
+<body class="antialiased text-slate-800 dark:text-slate-200">
+
+  <div id="login-page" class="flex items-center justify-center h-screen bg-slate-100 dark:bg-slate-900">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md dark:bg-slate-800">
+        <div class="text-center">
+            <i class="fa-solid fa-shield-halved text-4xl text-primary-500"></i>
+            <h1 class="mt-4 text-2xl font-bold">Acesso Administrativo</h1>
+            <p class="text-slate-500 dark:text-slate-400">Entre com suas credenciais.</p>
+        </div>
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-slate-600 dark:text-slate-300">Email</label>
+                <input type="email" id="email" placeholder="seu@exemplo.com" class="w-full px-3 py-2 mt-1 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 dark:bg-slate-700 dark:border-slate-600" required>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-slate-600 dark:text-slate-300">Senha</label>
+                <input type="password" id="password" placeholder="********" class="w-full px-3 py-2 mt-1 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 dark:bg-slate-700 dark:border-slate-600" required>
+            </div>
+            <p id="login-error" class="text-sm text-center text-rose-500 h-4"></p>
+            <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                Entrar
+            </button>
+        </form>
+    </div>
+  </div>
+
+  <div id="admin-panel" class="hidden h-screen bg-slate-50 dark:bg-slate-900">
+    <aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col fixed inset-y-0 left-0">
+        <div class="h-16 flex items-center justify-center border-b border-slate-200 dark:border-slate-700">
+            <i class="fa-solid fa-shield-halved text-2xl text-primary-500"></i>
+            <h1 class="ml-3 text-xl font-bold">Admin</h1>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <a href="#dashboard" class="nav-link flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-chart-pie w-6 text-slate-400"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#users" class="nav-link flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-users w-6 text-slate-400"></i>
+                <span>Usuários</span>
+            </a>
+            <a href="#financials" class="nav-link flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-sack-dollar w-6 text-slate-400"></i>
+                <span>Financeiro</span>
+            </a>
+            <a href="#server-status" class="nav-link flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-server w-6 text-slate-400"></i>
+                <span>Status do Servidor</span>
+            </a>
+            <a href="#settings" class="nav-link flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-cog w-6 text-slate-400"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-slate-200 dark:border-slate-700">
+            <button id="logout-btn" class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-rose-500/10 text-rose-500 dark:text-rose-400 hover:bg-rose-500/20 transition">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+            </button>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden ml-64">
+        <header class="h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-6 flex-shrink-0">
+            <h2 id="page-title" class="text-xl font-semibold">Dashboard</h2>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="h-10 w-10 grid place-content-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition text-slate-500">
+                    <i id="theme-icon-sun" class="fa-solid fa-sun hidden"></i>
+                    <i id="theme-icon-moon" class="fa-solid fa-moon"></i>
+                </button>
+                <div class="flex items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Admin+Master&background=3b82f6&color=FFFFFF&rounded=true" alt="Admin" class="w-10 h-10">
+                    <div>
+                        <p class="font-semibold text-sm">Admin Master</p>
+                        <p class="text-xs text-slate-500">admin@empresa.com</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-x-hidden overflow-y-auto p-6">
+            <section id="dashboard-section" class="page-section">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-lg shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total de Usuários</p>
+                                <p id="total-users" class="text-3xl font-bold">0</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center">
+                                <i class="fa-solid fa-users text-primary-500 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-lg shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Receita Total</p>
+                                <p id="total-revenue" class="text-3xl font-bold">R$0,00</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center">
+                                <i class="fa-solid fa-dollar-sign text-emerald-500 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-lg shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Assinaturas Ativas</p>
+                                <p id="active-subs" class="text-3xl font-bold">0</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center">
+                                <i class="fa-solid fa-credit-card text-amber-500 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-lg shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Novos Usuários (30d)</p>
+                                <p id="new-users" class="text-3xl font-bold">0</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center">
+                                <i class="fa-solid fa-user-plus text-sky-500 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
+                    <div class="lg:col-span-3 bg-white dark:bg-slate-800 p-5 rounded-lg shadow h-96">
+                        <h3 class="font-semibold mb-4">Crescimento de Usuários</h3>
+                        <canvas id="userGrowthChart"></canvas>
+                    </div>
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-5 rounded-lg shadow h-96">
+                         <h3 class="font-semibold mb-4">Receita por Plano</h3>
+                        <canvas id="revenueByPlanChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="users-section" class="page-section">
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow">
+                    <div class="p-4 flex justify-between items-center border-b border-slate-200 dark:border-slate-700">
+                        <h3 class="font-semibold">Gerenciamento de Usuários</h3>
+                        <div class="relative">
+                           <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                           <input id="user-search" type="text" placeholder="Buscar por e-mail..." class="w-64 pl-9 pr-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 border border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300">
+                                <tr>
+                                    <th class="text-left px-4 py-3 font-medium">Usuário</th>
+                                    <th class="text-left px-4 py-3 font-medium">Plano</th>
+                                    <th class="text-left px-4 py-3 font-medium">Status</th>
+                                    <th class="text-left px-4 py-3 font-medium">Registrado em</th>
+                                    <th class="text-center px-4 py-3 font-medium">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-table-body" class="divide-y divide-slate-200 dark:divide-slate-700">
+                                </tbody>
+                        </table>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-slate-200 dark:border-slate-700">
+                        <span id="pagination-info" class="text-sm text-slate-500"></span>
+                        <div class="flex gap-2">
+                           <button id="prev-page-btn" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm">Anterior</button>
+                           <button id="next-page-btn" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="financials-section" class="page-section">
+                 <div class="bg-white dark:bg-slate-800 p-5 rounded-lg shadow">
+                    <h3 class="font-semibold text-lg">Análise Financeira</h3>
+                    <p class="text-slate-500 mt-2">Esta seção exibirá detalhes sobre assinaturas, pagamentos e métricas financeiras da plataforma.</p>
+                </div>
+            </section>
+            
+            <section id="server-status-section" class="page-section">
+                 <div class="bg-white dark:bg-slate-800 p-5 rounded-lg shadow">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="font-semibold text-lg">Status do Servidor AWS</h3>
+                            <p class="text-slate-500 mt-1 text-sm">IP do Servidor: <span class="font-mono bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">[MASKED_IP]</span></p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                           <div id="server-status-indicator" class="w-4 h-4 rounded-full bg-green-500 status-online"></div>
+                           <span id="server-status-text" class="font-semibold text-green-600 dark:text-green-400">Online</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Uso de CPU</p>
+                            <p id="cpu-usage-text" class="text-2xl font-bold mt-1">0%</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 mt-2">
+                                <div id="cpu-usage-bar" class="bg-primary-500 h-2.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                         <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Uso de Memória</p>
+                            <p id="memory-usage-text" class="text-2xl font-bold mt-1">0%</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 mt-2">
+                                <div id="memory-usage-bar" class="bg-amber-500 h-2.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                         <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Uso de Disco</p>
+                            <p id="disk-usage-text" class="text-2xl font-bold mt-1">0%</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 mt-2">
+                                <div id="disk-usage-bar" class="bg-rose-500 h-2.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings-section" class="page-section">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-lg shadow">
+                    <h3 class="font-semibold text-lg">Configurações Gerais</h3>
+                    <p class="text-slate-500 mt-2">Aqui você poderá configurar parâmetros da aplicação, integrações e gerenciar chaves de API.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+  </div>
+
+  <script src="admin-script.js"></script>
+</body>
+</html>

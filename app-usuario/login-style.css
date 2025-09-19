@@ -1,0 +1,53 @@
+:root { 
+    --grad-1: #f0f9ff;
+    --grad-2: #e0f2fe;
+    --grad-3: #dbeafe;
+    --grad-4: #bfdbfe;
+    --card-bg: rgba(255, 255, 255, 0.7);
+}
+
+html.dark {
+    --grad-1: #0c1328;
+    --grad-2: #111827;
+    --grad-3: #1a2035;
+    --grad-4: #370d6a;
+    --card-bg: rgba(17, 24, 39, 0.7);
+}
+
+html, body { height: 100%; }
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body { 
+    font-family: 'Inter', system-ui;
+    background: linear-gradient(-45deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4));
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s ease infinite;
+}
+
+.card-bg {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Loader animation for login button */
+.loader {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    border: 2px solid #6366f1;
+    border-radius: 50%;
+    border-top: 2px solid #fff;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lançamento em Breve - Painel Financeiro™</title>
+  <meta name="description" content="Nosso novo Painel Financeiro está chegando para revolucionar a forma como você gerencia suas finanças. Fique atento!">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          boxShadow: {
+            soft: '0 10px 30px -12px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root { 
+      color-scheme: light;
+      --grad-1: #f9fafb; /* gray-50 */
+      --grad-2: #e5e7eb; /* gray-200 */
+      --grad-3: #d1d5db; /* gray-300 */
+      --grad-4: #e5e7eb; /* gray-200 */
+    }
+
+    html.dark {
+      color-scheme: dark;
+      --grad-1: #030712; /* gray-950 */
+      --grad-2: #111827; /* gray-900 */
+      --grad-3: #1f2937; /* gray-800 */
+      --grad-4: #111827; /* gray-900 */
+    }
+    
+    body { 
+      font-family: 'Inter', system-ui;
+      position: relative;
+      background-color: var(--grad-1);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 200%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(-45deg, 
+        var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), 
+        var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4));
+      background-size: 100% 100%;
+      animation: animate-gradient-continuous 40s linear infinite;
+    }
+
+    @keyframes animate-gradient-continuous {
+        from { transform: translateX(0%); }
+        to { transform: translateX(-50%); }
+    }
+    
+    .countdown-box {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    html.dark .countdown-box {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1.6s ease, transform 1.6s ease;
+    }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="text-slate-800 dark:text-slate-200 antialiased">
+
+  <main class="flex flex-col items-center justify-center min-h-screen p-6">
+    <div class="text-center">
+        <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-indigo-600 shadow-soft mb-6 reveal">
+            <i class="fa-solid fa-coins text-white text-4xl"></i>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-tight reveal" style="transition-delay: 200ms;">
+            Algo incrível está a chegar.
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 reveal" style="transition-delay: 400ms;">
+            Estamos a preparar o lançamento do nosso novo Painel Financeiro. Uma ferramenta poderosa para simplificar a sua vida financeira está quase pronta!
+        </p>
+    </div>
+
+    <div id="countdown" class="grid grid-cols-4 gap-4 md:gap-8 mt-12 md:mt-16 reveal" style="transition-delay: 600ms;">
+        <div class="text-center p-4 md:p-6 rounded-lg countdown-box border border-slate-900/10 dark:border-white/10">
+            <span id="days" class="text-4xl md:text-6xl font-bold">00</span>
+            <span class="block text-sm md:text-base mt-2">Dias</span>
+        </div>
+        <div class="text-center p-4 md:p-6 rounded-lg countdown-box border border-slate-900/10 dark:border-white/10">
+            <span id="hours" class="text-4xl md:text-6xl font-bold">00</span>
+            <span class="block text-sm md:text-base mt-2">Horas</span>
+        </div>
+        <div class="text-center p-4 md:p-6 rounded-lg countdown-box border border-slate-900/10 dark:border-white/10">
+            <span id="minutes" class="text-4xl md:text-6xl font-bold">00</span>
+            <span class="block text-sm md:text-base mt-2">Minutos</span>
+        </div>
+        <div class="text-center p-4 md:p-6 rounded-lg countdown-box border border-slate-900/10 dark:border-white/10">
+            <span id="seconds" class="text-4xl md:text-6xl font-bold">00</span>
+            <span class="block text-sm md:text-base mt-2">Segundos</span>
+        </div>
+    </div>
+    
+    <div class="mt-16 text-center reveal" style="transition-delay: 800ms;">
+        <p class="text-slate-600 dark:text-slate-400">Quer ser o primeiro a saber? Deixe o seu email abaixo.</p>
+        <form class="mt-4 max-w-md mx-auto flex gap-2">
+            <input type="email" placeholder="seuemail@exemplo.com" class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 border border-slate-300/40 dark:border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+            <button type="submit" class="px-6 py-3 rounded-lg font-semibold bg-indigo-600 text-white hover:bg-indigo-500 transition-colors">Notifique-me</button>
+        </form>
+    </div>
+
+  </main>
+
+  <footer class="absolute bottom-0 w-full py-6 text-center text-slate-600 dark:text-slate-400 text-sm">
+      <p>&copy; 2025 Prysmic inc    ™. Todos os direitos reservados. | <a href="/login.html" class="hover:underline">Acesso Restrito</a></p>
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lógica do Tema
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        if(initialTheme === 'dark') document.documentElement.classList.add('dark');
+
+        // Lógica do Contador
+        // Defina a data de lançamento aqui (Ano, Mês -1, Dia, Hora, Minuto, Segundo)
+        const launchDate = new Date(2025, 11, 25, 18, 0, 0).getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-2xl font-bold text-emerald-500'>Lançado!</div>";
+            }
+        }, 1000);
+
+        // Animação de revelação
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    });
+  </script>
+
+</body>
+</html>

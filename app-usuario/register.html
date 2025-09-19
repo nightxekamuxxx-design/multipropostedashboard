@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crie sua Conta - Painel Financeiro™</title>
+  <meta name="description" content="Registe-se para começar a organizar as suas finanças com o Painel Financeiro™.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          boxShadow: {
+            soft: '0 10px 30px -12px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="register-style.css">
+
+</head>
+
+<body class="text-slate-700 dark:text-slate-300 antialiased">
+
+  <div class="flex flex-col items-center justify-center min-h-screen px-4 py-8">
+    <div class="w-full max-w-lg">
+        <div class="text-center mb-8">
+             <a href="#" class="inline-flex items-center gap-3">
+                <div class="h-12 w-12 rounded-xl bg-indigo-600 grid place-content-center">
+                <i class="fa-solid fa-coins text-white text-2xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-slate-800 dark:text-white">Painel Financeiro<sup class="text-xs">™</sup></span>
+            </a>
+            <h1 id="form-title" class="mt-6 text-3xl font-bold text-slate-900 dark:text-white" data-i18n="registerTitle">Crie a sua conta</h1>
+            <p id="form-subtitle" class="mt-2 text-slate-600 dark:text-slate-400" data-i18n="registerSubtitle">Comece a transformar a sua vida financeira hoje mesmo.</p>
+        </div>
+
+        <div class="bg-white/30 dark:bg-slate-900/30 backdrop-blur-lg border border-slate-300/20 dark:border-white/10 rounded-2xl p-8 shadow-soft">
+            <div class="progress-bar-container">
+              <div class="progress-bar-line"><div class="progress-bar-line-fill" id="progress-fill"></div></div>
+              <div class="progress-step active" data-step="1">1</div>
+              <div class="progress-step" data-step="2">2</div>
+              <div class="progress-step" data-step="3">3</div>
+            </div>
+
+            <form id="register-form">
+                <div id="step-1" class="step active">
+                    <div class="space-y-6">
+                        <div>
+                                <label for="fullname" class="block text-sm font-medium text-slate-800 dark:text-slate-200" data-i18n="fullnameLabel">Nome Completo</label>
+                            <div class="mt-1">
+                                <input id="fullname" name="fullname" type="text" required class="form-input">
+                            </div>
+                        </div>
+                        <div>
+                                <label for="email" class="block text-sm font-medium text-slate-800 dark:text-slate-200" data-i18n="emailLabel">Endereço de e-mail</label>
+                            <div class="mt-1">
+                                <input id="email" name="email" type="email" autocomplete="email" required class="form-input">
+                            </div>
+                        </div>
+                        <div>
+                                <label for="password" class="block text-sm font-medium text-slate-800 dark:text-slate-200" data-i18n="passwordLabel">Senha</label>
+                            <div class="mt-1">
+                                <input id="password" name="password" type="password" autocomplete="new-password" required class="form-input">
+                                <p id="password-error" class="error-message" data-i18n="passwordError">A senha deve ter no mínimo 8 caracteres.</p>
+                            </div>
+                        </div>
+                        <div>
+                                <label for="confirm-password" class="block text-sm font-medium text-slate-800 dark:text-slate-200" data-i18n="confirmPasswordLabel">Confirmar Senha</label>
+                            <div class="mt-1">
+                                <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required class="form-input">
+                                <p id="confirm-password-error" class="error-message">As senhas não coincidem.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="mt-8">
+                            <button type="button" id="next-btn-1" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-animated" data-i18n="nextBtn">
+                            Próximo
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step-2" class="step">
+                    <div class="space-y-6">
+                        <div>
+                                <label for="custom_sq" class="block text-sm font-medium text-slate-800 dark:text-slate-200" data-i18n="secretQuestionLabel">Crie sua Pergunta Secreta</label>
+                            <div class="mt-1">
+                                <input type="text" id="custom_sq" name="custom_sq" required class="form-input" placeholder="Ex: Qual palavra-chave eu criei para meu cofre?">
+                                <p class="mt-2 text-xs text-slate-500 dark:text-slate-400" data-i18n="secretQuestionHelp">Crie uma pergunta única e pessoal, cuja resposta não possa ser encontrada online. Evite dados comuns como nomes, datas ou lugares.</p>
+                                <p id="custom_sq-error" class="error-message"></p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="custom_sa" class="block text-sm font-medium text-slate-800 dark:text-slate-200">Sua Resposta Secreta</label>
+                            <div class="mt-1">
+                                <input type="text" id="custom_sa" name="custom_sa" required class="form-input" placeholder="A resposta é sensível a maiúsculas">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <button type="button" id="prev-btn-2" class="w-1/2 flex justify-center py-3 px-4 border border-slate-400 dark:border-slate-500 rounded-lg shadow-sm text-sm font-medium text-slate-800 dark:text-slate-200 bg-transparent hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors" data-i18n="backBtn">
+                            Voltar
+                        </button>
+                        <button type="button" id="next-btn-2" class="w-1/2 flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-animated">
+                            Próximo
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="step-3" class="step">
+                    <div class="text-center">
+                        <i class="fa-solid fa-fingerprint text-5xl text-indigo-500"></i>
+                        <h2 class="mt-4 text-xl font-bold text-slate-800 dark:text-slate-200">Acesso Rápido e Seguro</h2>
+                        <p class="mt-2 text-slate-600 dark:text-slate-400">Deseja habilitar o acesso com sua impressão digital (ou reconhecimento facial) para logins futuros? É mais rápido e seguro.</p>
+                    </div>
+                    <div class="mt-8">
+                        <button type="button" id="enable-biometry" class="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 btn-animated" data-i18n="enableBiometry">
+                            <i class="fa-solid fa-check"></i>
+                            Sim, habilitar biometria
+                        </button>
+                    </div>
+                     <div class="mt-8 flex gap-4">
+                        <button type="button" id="prev-btn-3" class="w-full flex justify-center py-3 px-4 border border-slate-400 dark:border-slate-500 rounded-lg shadow-sm text-sm font-medium text-slate-800 dark:text-slate-200 bg-transparent hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                            Voltar
+                        </button>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-animated">
+                           Finalizar Cadastro
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <p class="mt-6 text-center text-sm text-slate-600 dark:text-slate-400">
+                Já tem uma conta?
+                <a href="login.html" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                    Faça login
+                </a>
+            </p>
+        </div>
+    </div>
+  </div>
+  
+  <script src="register-script.js"></script>
+
+</body>
+</html>

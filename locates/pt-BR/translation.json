@@ -1,0 +1,47 @@
+{
+  "pageTitle": "Dashboard Financeiro",
+  "headerTitle": "Dashboard Financeiro",
+  "upgradeButton": "Fazer Upgrade",
+  "filterBy": "Filtrar por:",
+  "filterToday": "Hoje",
+  "filterWeek": "Esta Semana",
+  "filterMonth": "Este Mês",
+  "filterYear": "Este Ano",
+  "filterAll": "Tudo",
+  "totalRevenue": "Receita Total",
+  "totalExpense": "Despesa Total",
+  "currentBalance": "Saldo Atual",
+  "addTransactionTitle": "Adicionar Nova Transação",
+  "descriptionLabel": "Descrição",
+  "valueLabel": "Valor (R$)",
+  "categoryLabel": "Categoria",
+  "typeLabel": "Tipo",
+  "dateLabel": "Data",
+  "addButton": "Adicionar",
+  "recentTransactions": "Transações Recentes"
+  ,"importTransactions": "Importar Transações"
+  ,"importCsv": "Importar CSV"
+  ,"importPdf": "Importar PDF"
+  ,"welcomeMsg": "Bem-vindo ao seu painel financeiro"
+  ,"logout": "Sair"
+  ,"terms": "Termos de Serviço"
+  ,"privacy": "Política de Privacidade"
+  ,"noTransactions": "Nenhuma transação encontrada."
+  ,"forecastTitle": "Diagnóstico e Previsão Financeira (Próximos 30 dias)"
+  ,"spendLevelTitle": "Nível de Despesa Diária (Média)"
+  ,"synthesisTitle": "Síntese de Planilhas e Extratos"
+  ,"viewDetailedAnalysis": "Ver Análise Detalhada"
+    ,"sidebar": {
+      "brand": "Painel",
+      "product": "Financeiro™",
+      "dashboard": "Dashboard",
+      "transactions": "Transações",
+      "goals": "Metas Financeiras",
+      "scheduledIncome": "Receitas Programadas",
+      "simulations": "Simulações",
+      "accounts": "Contas",
+      "incomes": "Entradas",
+      "expenses": "Saídas",
+      "inviteAdmin": "Convidar Admin"
+    }
+}
